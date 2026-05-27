@@ -1,29 +1,14 @@
 package controller;
 
-import dao.BookDAO;
-import model.Book;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException, IOException {
-
-        BookDAO dao = new BookDAO();
-
-        List<Book> books = dao.getAllBooks();
-
-        request.setAttribute("books", books);
-
-        request.getRequestDispatcher("/jsp/index.jsp")
-                .forward(request, response);
     }
 }

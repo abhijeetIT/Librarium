@@ -5,9 +5,11 @@ import util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
-       public boolean register(User user){
+       public boolean registerUser(User user){
            try(Connection con = DBConnection.getConnection()){
                PreparedStatement ps = con.prepareStatement("INSERT INTO users (name,email,password,phone,address) " +
                        "VALUES (?,?,?,?,?)");
@@ -23,4 +25,28 @@ public class UserDAO {
            }
        }
 
+       public User validateUser(String email, String password) {
+           try (Connection con = DBConnection.getConnection()) {
+
+               PreparedStatement ps = con.prepareStatement(
+                       "SELECT * FROM users WHERE email=? AND password=?"
+               );
+               ps.setString(1, email);
+               ps.setString(2, password);
+
+               ResultSet rs = ps.executeQuery();
+               User user = new User();
+               while (rs.next()) {
+                   user.setId(rs.getInt("id"));
+                   user.setName(rs.getString("name"));
+                   user.setEmail(rs.getString("email"));
+                   user.setPhone(rs.getString("phone"));
+                   user.setAddress(rs.getString("address"));
+                   user.setCreatedAt(rs.getTimestamp("created_at"));
+               }
+               return user;
+           } catch (SQLException e) {
+               throw new RuntimeException(e);
+           }
+       }
 }

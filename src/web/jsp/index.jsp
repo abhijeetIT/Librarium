@@ -12,7 +12,7 @@
 <body>
 
   <!-- ===================== NAVBAR ===================== -->
-  <jsp:include page="../components/navbar.jsp"/>
+  <jsp:include page="components/navbar.jsp"/>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="home">
@@ -142,7 +142,7 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <jsp:include page="../components/footer.jsp"/>
+  <jsp:include page="components/footer.jsp"/>
 
   <!-- Toast Notification -->
   <div class="toast" id="toast">
