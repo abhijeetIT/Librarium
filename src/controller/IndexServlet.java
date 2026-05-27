@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet("/home")
 public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,

@@ -25,28 +25,37 @@ public class UserDAO {
            }
        }
 
-       public User validateUser(String email, String password) {
-           try (Connection con = DBConnection.getConnection()) {
+    public User validateUser(String email, String password) {
 
-               PreparedStatement ps = con.prepareStatement(
-                       "SELECT * FROM users WHERE email=? AND password=?"
-               );
-               ps.setString(1, email);
-               ps.setString(2, password);
+        try (Connection con = DBConnection.getConnection()) {
 
-               ResultSet rs = ps.executeQuery();
-               User user = new User();
-               while (rs.next()) {
-                   user.setId(rs.getInt("id"));
-                   user.setName(rs.getString("name"));
-                   user.setEmail(rs.getString("email"));
-                   user.setPhone(rs.getString("phone"));
-                   user.setAddress(rs.getString("address"));
-                   user.setCreatedAt(rs.getTimestamp("created_at"));
-               }
-               return user;
-           } catch (SQLException e) {
-               throw new RuntimeException(e);
-           }
-       }
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM users WHERE email=? AND password=?"
+            );
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                User user = new User();
+
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setPhone(rs.getString("phone"));
+                user.setAddress(rs.getString("address"));
+                user.setCreatedAt(rs.getTimestamp("created_at"));
+
+                return user;
+            }
+
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

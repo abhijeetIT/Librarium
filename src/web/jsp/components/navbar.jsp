@@ -8,7 +8,6 @@
       <span class="logo-text">Librarium</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="${pageContext.request.contextPath}/home"     class="nav-link">Home</a></li>
       <li><a href="${pageContext.request.contextPath}/books"    class="nav-link">Explore Books</a></li>
       <li><a href="${pageContext.request.contextPath}/about"    class="nav-link">About</a></li>
       <li><a href="${pageContext.request.contextPath}/login"    class="nav-link">Login</a></li>
