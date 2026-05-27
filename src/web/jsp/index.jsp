@@ -1,17 +1,18 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Librarium – Discover Your Next Favorite Book</title>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
   <!-- ===================== NAVBAR ===================== -->
-  <jsp:include page="components/navbar.jsp"/>
+  <jsp:include page="../components/navbar.jsp"/>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="home">
@@ -68,20 +69,26 @@
            ====================================================== -->
       <div class="books-grid">
 
-        <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
-        <%--
         <c:forEach var="book" items="${books}">
           <div class="book-card">
             <div class="book-img-wrap">
-              <img src="${book.imageUrl}" alt="${book.title}" class="book-img"/>
+              <img src="${pageContext.request.contextPath}/${book.imageUrl}"
+                   alt="${book.title}"
+                   class="book-img"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+              <div class="book-img-placeholder" style="display:none;">
+                <i class="fa-solid fa-book"></i>
+              </div>
             </div>
             <div class="book-info">
+              <div class="book-genre-tag">${book.category}</div>
               <h3 class="book-title">${book.title}</h3>
               <p class="book-author"><i class="fa-solid fa-pen-nib"></i> ${book.author}</p>
               <div class="book-footer">
                 <span class="book-price">&#8377; ${book.price}</span>
-                <form action="CartServlet" method="post" style="display:inline;">
-                  <input type="hidden" name="bookId" value="${book.id}"/>
+                <form action="${pageContext.request.contextPath}/CartServlet" method="post" style="display:inline;">
+                  <input type="hidden" name="bookId"    value="${book.id}"/>
+                  <input type="hidden" name="bookTitle" value="${book.title}"/>
                   <button type="submit" class="add-cart-btn">
                     <i class="fa-solid fa-cart-plus"></i> Add to Cart
                   </button>
@@ -90,117 +97,14 @@
             </div>
           </div>
         </c:forEach>
-        --%>
 
-        <!-- ── DEMO CARDS (remove these when backend is connected) ── -->
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#667eea,#764ba2);">
-              <i class="fa-solid fa-book"></i>
-            </div>
+        <%-- Show message if no books found --%>
+        <c:if test="${empty books}">
+          <div class="no-books">
+            <i class="fa-solid fa-box-open"></i>
+            <p>No books available right now. Check back soon!</p>
           </div>
-          <div class="book-info">
-            <h3 class="book-title">The Midnight Library</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> Matt Haig</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 399</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'The Midnight Library')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#f6d365,#fda085);">
-              <i class="fa-solid fa-book"></i>
-            </div>
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">Atomic Habits</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> James Clear</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 499</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'Atomic Habits')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);">
-              <i class="fa-solid fa-book"></i>
-            </div>
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">The Alchemist</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> Paulo Coelho</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 279</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'The Alchemist')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#11998e,#38ef7d);">
-              <i class="fa-solid fa-book"></i>
-            </div>
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">Dune</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> Frank Herbert</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 549</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'Dune')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#f093fb,#f5576c);">
-              <i class="fa-solid fa-book"></i>
-            </div>
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">Sapiens</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> Yuval Noah Harari</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 599</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'Sapiens')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-card">
-          <div class="book-img-wrap">
-            <div class="book-img-placeholder" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">
-              <i class="fa-solid fa-book"></i>
-            </div>
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">Think and Grow Rich</h3>
-            <p class="book-author"><i class="fa-solid fa-pen-nib"></i> Napoleon Hill</p>
-            <div class="book-footer">
-              <span class="book-price">&#8377; 349</span>
-              <button class="add-cart-btn" onclick="addToCart(this,'Think and Grow Rich')">
-                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-        <!-- ── END DEMO CARDS ── -->
+        </c:if>
 
       </div>
     </div>
@@ -238,7 +142,7 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <jsp:include page="components/footer.jsp"/>
+  <jsp:include page="../components/footer.jsp"/>
 
   <!-- Toast Notification -->
   <div class="toast" id="toast">
@@ -252,6 +156,6 @@
     <span class="cart-count" id="cartCount">0</span>
   </div>
 
-  <script src="index.js"></script>
+  <script src="${pageContext.request.contextPath}/js/index.js"></script>
 </body>
 </html>

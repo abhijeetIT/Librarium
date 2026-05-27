@@ -631,6 +631,25 @@ button { cursor: pointer; border: none; outline: none; font-family: var(--font-b
   border: 2px solid var(--white);
 }
 
+/* Real book image from DB */
+.book-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
+}
+.book-card:hover .book-img { transform: scale(1.05); }
+
+/* Empty state */
+.no-books {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+}
+.no-books i { font-size: 3rem; margin-bottom: 16px; display: block; color: var(--border); }
+.no-books p { font-size: 1.05rem; }
+
 /* ======================================================
    ANIMATIONS
    ====================================================== */
