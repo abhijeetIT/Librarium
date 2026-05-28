@@ -16,6 +16,10 @@ public class Order {
     private String    status;        // "PLACED" | "SHIPPED" | "DELIVERED"
     private Timestamp orderedAt;
 
+    //for admin panel only
+    private String userName;
+    private String userEmail;
+
     public Order() {}
 
     // getters and setters
@@ -51,4 +55,20 @@ public class Order {
 
     public Timestamp getOrderedAt()                   { return orderedAt; }
     public void      setOrderedAt(Timestamp orderedAt){ this.orderedAt = orderedAt; }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 }

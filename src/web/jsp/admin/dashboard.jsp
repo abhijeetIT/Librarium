@@ -118,6 +118,10 @@
         + Add Book
     </button>
 
+    <a href="${pageContext.request.contextPath}/admin/orders">
+        Manage Orders
+    </a>
+
 </div>
 
 <table>
@@ -148,7 +152,7 @@
 
         <td><%= b.getCategory() %></td>
 
-        <td>₹ <%= b.getPrice() %></td>
+        <td>Rs.<%= b.getPrice() %></td>
 
         <td>
 

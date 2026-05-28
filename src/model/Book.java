@@ -18,7 +18,6 @@ public class Book {
 
     private String imageUrl;
 
-
     // Default Constructor
     public Book() {
     }
