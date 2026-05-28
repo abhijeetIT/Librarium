@@ -1,0 +1,122 @@
+/* ====================================================
+   LIBRARIUM – profile.css
+   ==================================================== */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── Left panel ── */
+.profile-left {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.profile-avatar {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 20px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.profile-avatar i { font-size: 2.8rem; color: var(--primary); }
+.profile-avatar h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+.profile-avatar p  { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
+
+.profile-form {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+/* reuse form-group from cart.css */
+.profile-save-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; padding: 10px;
+  background: var(--primary); color: var(--white);
+  border-radius: 6px; font-size: 0.92rem; font-weight: 600;
+  border: none; cursor: pointer;
+  transition: background var(--transition);
+}
+.profile-save-btn:hover { background: var(--primary-dk); }
+
+.delete-btn {
+  width: 100%; padding: 9px;
+  background: none; color: #e74c3c;
+  border: 1.5px solid #e74c3c; border-radius: 6px;
+  font-size: 0.88rem; font-weight: 600;
+  transition: background var(--transition), color var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.delete-btn:hover { background: #fff0f0; }
+
+/* ── Right panel: orders ── */
+.profile-right {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 24px;
+}
+.orders-heading {
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+  color: var(--dark); margin-bottom: 16px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+
+.orders-list { display: flex; flex-direction: column; gap: 0; }
+
+.order-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.3s ease both;
+}
+.order-row:last-child { border-bottom: none; }
+
+.order-row-left  { display: flex; align-items: center; gap: 12px; }
+.order-id {
+  font-size: 0.75rem; font-weight: 700; color: var(--text-light);
+  background: var(--bg-alt); padding: 3px 8px; border-radius: 4px;
+  white-space: nowrap;
+}
+.order-book-title { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+.order-meta       { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+
+.order-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.order-price     { font-weight: 700; font-size: 0.92rem; color: var(--primary); }
+
+.order-status {
+  font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+.status-placed    { background: #fff8e1; color: #f39c12; }
+.status-shipped   { background: #e3f2fd; color: #1976d2; }
+.status-delivered { background: #e8f5e9; color: #2e7d32; }
+
+.orders-empty {
+  text-align: center; padding: 48px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.orders-empty i { font-size: 2.4rem; color: #ddd; }
+.orders-empty p { color: var(--text-light); font-size: 0.9rem; }
+
+/* ── navbar cart icon ── */
+.nav-cart-icon {
+  position: relative; display: flex; align-items: center;
+  padding: 6px 10px; border-radius: var(--radius-sm);
+  font-size: 1rem; color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+.nav-cart-icon:hover, .nav-cart-icon.active { background: var(--primary-lt); color: var(--primary); }
+.cart-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--primary); color: var(--white);
+  font-size: 0.62rem; font-weight: 700;
+  width: 16px; height: 16px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--white);
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .profile-layout { grid-template-columns: 1fr; }
+}

@@ -197,4 +197,17 @@ public class BookDAO {
         }
         return books;
     }
+
+    public Book getBookById(int id) {
+        String sql = "SELECT * FROM books WHERE id = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return mapRow(rs);
+        } catch (SQLException e) {
+            System.out.println("BookDAO.getBookById error: " + e.getMessage());
+        }
+        return null;
+    }
 }

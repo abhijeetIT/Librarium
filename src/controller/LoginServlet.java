@@ -3,33 +3,51 @@ package controller;
 import dao.UserDAO;
 import model.User;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//        req.setAttribute("activePage", "login");
-        req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
+
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // If already logged in, redirect to books
+        if (request.getSession().getAttribute("loggedInUser") != null) {
+            response.sendRedirect(request.getContextPath() + "/books");
+            return;
+        }
+
+        request.setAttribute("activePage", "login");
+        request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-              String email = req.getParameter("email");
-              String password = req.getParameter("password");
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
+            throws ServletException, IOException {
 
-              User user = new UserDAO().validateUser(email, password);
+        String email    = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.validateUser(email, password);
 
         if (user != null) {
-//            req.getSession().setAttribute("loggedInUser", user);
-            res.sendRedirect(req.getContextPath() + "/books");
+            // ── create session and store user ──
+            HttpSession session = request.getSession(true);
+            session.setAttribute("loggedInUser", user);   // navbar reads this
+            session.setAttribute("cartCount", 0);         // init cart badge
+
+            // redirect to books after login
+            response.sendRedirect(request.getContextPath() + "/books");
+
         } else {
-//            req.setAttribute("activePage", "login");
-            req.setAttribute("error", "Invalid email or password. Please try again.");
-            req.getRequestDispatcher("/jsp/login.jsp").forward(req, res);
+            request.setAttribute("activePage", "login");
+            request.setAttribute("error", "Invalid email or password. Please try again.");
+            request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
         }
     }
 }

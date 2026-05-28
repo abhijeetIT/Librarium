@@ -75,7 +75,7 @@
                 <p class="search-book-desc">${book.description}</p>
                 <div class="search-book-footer">
                   <span class="search-book-price">&#8377; ${book.price}</span>
-                  <form action="${pageContext.request.contextPath}/CartServlet" method="post" style="display:inline;">
+                  <form action="${pageContext.request.contextPath}/cart" method="post" style="display:inline;">
                     <input type="hidden" name="bookId"    value="${book.id}"/>
                     <input type="hidden" name="bookTitle" value="${book.title}"/>
                     <button type="submit" class="add-cart-btn">
