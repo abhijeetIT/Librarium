@@ -1,0 +1,35 @@
+/* ====================================================
+   LIBRARIUM – books.css
+   ==================================================== */
+
+.books-section { padding: 64px 0; }
+
+/* author list — row style */
+.author-list {
+  display: flex; flex-direction: column; gap: 1px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; background: var(--white);
+}
+.author-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem; font-weight: 500; color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  background: var(--white);
+}
+.author-row:last-child { border-bottom: none; }
+.author-row:hover      { background: var(--primary-lt); color: var(--primary); }
+
+.author-row-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--bg-alt); display: grid; place-items: center;
+  color: var(--primary); font-size: 0.9rem; flex-shrink: 0;
+}
+.author-row:hover .author-row-icon { background: rgba(232,86,42,0.15); }
+
+.author-row-arrow {
+  margin-left: auto; font-size: 0.75rem;
+  color: var(--text-light); transition: transform var(--transition);
+}
+.author-row:hover .author-row-arrow { transform: translateX(3px); color: var(--primary); }

@@ -1,17 +1,15 @@
 package controller;
 
 import dao.BookDAO;
-import model.Book;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/home")
-public class IndexServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
@@ -19,9 +17,10 @@ public class IndexServlet extends HttpServlet {
 
         BookDAO dao = new BookDAO();
 
-        List<Book> books = dao.getAllBooks();
-
-        request.setAttribute("books", books);
+        // index.jsp shows categories and authors — no book list
+        request.setAttribute("categories", dao.getAllCategories());
+        request.setAttribute("authors",    dao.getAllAuthors());
+        request.setAttribute("activePage", "home");
 
         request.getRequestDispatcher("/jsp/index.jsp")
                 .forward(request, response);

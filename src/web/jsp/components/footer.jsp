@@ -1,31 +1,24 @@
-<%-- components/footer.jsp --%>
-<%-- Include with: <jsp:include page="components/footer.jsp"/> --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <footer class="footer">
-  <div class="container footer-grid">
+  <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="../jsp/index.jsp" class="nav-logo">
+      <a href="${pageContext.request.contextPath}/home" class="nav-logo">
         <span class="logo-icon"><i class="fa-solid fa-book-open"></i></span>
         <span class="logo-text">Librarium</span>
       </a>
-      <p class="footer-tagline">Your one-stop destination for books of every kind. Read more, live more.</p>
-      <div class="social-links">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
-      </div>
+      <p>Your one-stop destination for books of every kind.</p>
     </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="contact-list">
-        <li><i class="fa-solid fa-location-dot"></i> BSTM Chuchura, Kolkata, WB</li>
-        <li><i class="fa-solid fa-phone"></i> +91 0000000000</li>
-        <li><i class="fa-solid fa-envelope"></i> hello@librarium.in</li>
-      </ul>
+    <div class="footer-links">
+      <a href="${pageContext.request.contextPath}/home">Home</a>
+      <a href="${pageContext.request.contextPath}/books">Books</a>
+      <a href="${pageContext.request.contextPath}/about">About</a>
+    </div>
+    <div class="footer-contact">
+      <span><i class="fa-solid fa-envelope"></i> hello@librarium.in</span>
+      <span><i class="fa-solid fa-phone"></i> +91 00000 00000</span>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 <strong>Librarium</strong>. All rights reserved. | College Project</p>
+    <p>&copy; 2026 <strong>Librarium</strong>. All rights reserved.</p>
   </div>
 </footer>

@@ -6,7 +6,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register – Librarium</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
